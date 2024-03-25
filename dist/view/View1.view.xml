@@ -1,0 +1,77 @@
+<mvc:View controllerName="masterdetail.masterdetail.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form">
+    <Page id="page" >
+    <customHeader>
+    <OverflowToolbar >
+    <content>
+    <ToolbarSpacer /><Title text="Order Summary Master detail" /><ToolbarSpacer />
+    </content></OverflowToolbar></customHeader>
+        <content />
+        <content>
+        <SplitContainer id="splitCont" initialMaster="master" initialDetail="orderDetail">
+
+        <detailPages>
+        <Page id="orderDetail" title="Order Details">
+        <Table id="orderTable" items="{/Order_Details}">
+        <columns>
+        <Column >
+        <Text text="Order ID"></Text></Column>
+         <Column >
+        <Text text="Product ID"></Text></Column>
+         <Column >
+        <Text text="Unit Price"></Text></Column>
+         <Column >
+        <Text text="Quantity"></Text></Column>
+         <Column >
+        <Text text="Discount"></Text></Column>
+        
+        </columns>
+        <items>
+        <ColumnListItem type="Navigation" press="onTbItem">
+        <cells>
+        <Text text="{OrderID}"></Text>
+        <Text text="{ProductID}"></Text>
+        <Text text="{UnitPrice}"></Text>
+        <Text text="{Quantity}"></Text>
+        <Text text="{Discount}"></Text>
+        
+        </cells></ColumnListItem></items>
+        </Table>
+        </Page>
+        <Page id="productDetails" title="Product" showNavButton="true" navButtonPress="onNavBack">
+          <VBox >
+          <f:SimpleForm id="formID" editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1">
+          <f:content>
+<Label text="Product name"/>
+<Text text="{/ProductName}"/>
+<Label text="Supplier ID"/>
+<Text text="{/SupplierID}"/>
+<Label text="Quantity/Unit"/>
+<Text text="{/QuantityPerUnit}"/>
+<Label text="unit Price"/>
+<Text text="{/UnitPrice}"/>
+<Label text="Units on Order"/>
+<Text text="{/UnitsOnOrder}"/>
+</f:content></f:SimpleForm></VBox>
+        </Page>
+        </detailPages>
+
+        <masterPages>
+
+        <Page id="master" title="Order Master">
+
+        <List id="orderList" items="{/Orders}" itemPress="onItemPress">
+        <StandardListItem title="{OrderID}" type="Navigation"></StandardListItem>
+        </List>
+        </Page>
+        
+        </masterPages>
+        
+        </SplitContainer>
+        
+        
+        </content>
+    </Page>
+</mvc:View>
